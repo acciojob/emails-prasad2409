@@ -36,15 +36,9 @@ public class Workspace extends Gmail{
                 if (meeting1 == meeting2) {
                     continue;
                 }
-
-                if (meeting1.getStartTime().isBefore(meeting2.getEndTime()) &&
-                        meeting1.getEndTime().isAfter(meeting2.getStartTime())) {
-                    // Meetings overlap, so can't attend both
-                    count = 1;
-                    break;
-                } else {
-                    count++;
-                }
+                int one = meeting1.getEndTime().compareTo(meeting2.getStartTime());
+                if(one == 1) count++;
+                else count =0;
             }
 
             if (count > maxMeetings) {
